@@ -1,0 +1,27 @@
+[
+    {
+        "class": "potions",
+        "name": "life potion I",
+        "type": "recovery",
+        "value": 0.35,
+        "price": 30
+    },{
+        "class": "potions",
+        "name": "life potion II",
+        "type": "recovery",
+        "value": 0.75,
+        "price": 70
+    },{
+        "class": "potions",
+        "name": "life potion III",
+        "type": "recovery",
+        "value": 1,
+        "price": 90
+    }, {
+        "class": "potions",
+        "name": "revival potion",
+        "type": "revive",
+        "value": 1,
+        "price": 100
+    }
+]

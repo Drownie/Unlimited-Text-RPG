@@ -1,0 +1,31 @@
+[
+    {
+        "class": "artifact",
+        "name": "sword",
+        "type": "attack",
+        "position": "right hand",
+        "value": 20,
+        "price": 100
+    }, {
+        "class": "artifact",
+        "name": "shield",
+        "type": "defense",
+        "position": "left hand",
+        "value": 10,
+        "price": 100
+    }, {
+        "class": "artifact",
+        "name": "boots",
+        "type": "speed",
+        "position": "foot",
+        "value": 0.5,
+        "price": 110
+    }, {
+        "class": "artifact",
+        "name": "heart stone",
+        "type": "life",
+        "position": "neck",
+        "value": 40,
+        "price": 120
+    }
+]

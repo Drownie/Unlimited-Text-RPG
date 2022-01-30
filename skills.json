@@ -1,0 +1,28 @@
+[
+    {
+        "name": "double slash",
+        "class": "Warrior",
+        "type": "attack",
+        "value": 2
+    }, {
+        "name": "attack absorb",
+        "class": "Warrior",
+        "type": "defend",
+        "value": 3
+    }, {
+        "name": "meteor shower",
+        "class": "Mage",
+        "type": "attack",
+        "value": 3
+    },  {
+        "name": "mana shield",
+        "class": "Mage",
+        "type": "defend",
+        "value": 2
+    }, {
+        "name": "backstab",
+        "class": "Assassin",
+        "type": "attack",
+        "value": 5
+    }
+]

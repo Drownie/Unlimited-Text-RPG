@@ -1,0 +1,24 @@
+[
+    {
+		"name": "Goblin",
+		"max_health": 40,
+		"health": 40,
+		"basic_attack": 30,
+		"attack_speed": 4,
+		"armor": 6
+	}, {
+		"name": "Dark Knight",
+		"max_health": 70,
+		"health": 70,
+		"basic_attack": 35,
+		"attack_speed": 3.5,
+		"armor": 15
+	}, {
+		"name": "Illusioner",
+		"max_health": 45,
+		"health": 45,
+		"basic_attack": 38,
+		"attack_speed": 6,
+		"armor": 2
+	}
+]
