@@ -20,5 +20,12 @@
 		"basic_attack": 38,
 		"attack_speed": 6,
 		"armor": 2
+	}, {
+		"name": "Zombie",
+		"max_health": 75,
+		"health": 75,
+		"basic_attack": 25,
+		"attack_speed": 2.5,
+		"armor": 8
 	}
 ]

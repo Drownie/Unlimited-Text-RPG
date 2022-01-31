@@ -9,11 +9,12 @@ class Game:
 		playerJSON = open("player.json", "r")
 		artifactJSON = open("artifact.json", "r")
 		potionJSON = open("potions.json", "r")
+		enemiesJSON = open("enemies.json", "r")
 		self.players = json.load(playerJSON)
 		self.artifact = json.load(artifactJSON)
 		self.potions = json.load(potionJSON)
+		self.enemies = json.load(enemiesJSON)
 		self.player = None
-		# self.player = self.players[str(rdm.randint(0, 2))]
 
 	def refresh(self):
 		playerJSON = open("player.json", "r")
@@ -23,14 +24,15 @@ class Game:
 		self.refresh()
 		print("======== Roles ========")
 		for i in range(len(self.players)):
-			print("%s. "%(i+1) + self.players[str(i)]["name"])
+			print("%s. "%(i+1) + self.players[i]["name"])
 
 		role = int(input("\nRole > "))
-		self.player = self.players[str(role-1)]
+		self.player = self.players[role-1]
 		self.player["coins"] = 100
 		self.player["level"] = 1
 		self.player["exp"] = 0
 		self.player["exp_container"] = 100
+		self.homeLimit = 0
 		self.inventory = []
 		self.bodyPart = {"head": None, "neck": None, "body": None, "left hand": None, "right hand": None, "leg": None, "foot": None}
 		self.Menu()
@@ -75,18 +77,20 @@ class Game:
 
 	def Home(self):
 		if (self.player["health"] > 0):
-			recover = min(((rdm.randint(0, 4) * .1) * self.player["max_health"]), (self.player["max_health"] - self.player["health"]))
-			self.player["health"] += recover
-			print(f"Player has recovered {recover} health")
-			if (recover == 0):
+			recover = min(((rdm.randint(0, 25) * .01) * self.player["max_health"]), (self.player["max_health"] - self.player["health"]))
+			self.player["health"] += max((recover - self.homeLimit), 0)
+			print(f"Player has recovered {int(recover)} health")
+			if (self.player["health"] == self.player["max_health"]):
 				print("Your health is full")
+				pass
+			self.homeLimit += 1
 		else:
 			print("\nYour player is dead, please buy revive potion first")
 
 	def Fight(self):
 		self.refresh()
 		player = self.player
-		enemy = self.enemyBalancing(player["level"], self.players[str(rdm.randint(0, 2))])
+		enemy = self.enemySelection()
 		playerLine = 20
 		enemyLine = 20
 		self.displayFight(player, enemy)
@@ -113,11 +117,20 @@ class Game:
 			print("Draw")
 		print("\n================")
 
+	def enemySelection(self):
+		enemyType = ["monster", "player"]
+		roll = rdm.choices(enemyType)[0]
+		print(f"You encounter a {roll}")
+		if (roll == "player"):
+			enemy = self.enemyBalancing(self.player['level'], self.players[rdm.randint(0, len(self.players) - 1)])
+		else:
+			enemy = self.enemyBalancing(self.player['level'], self.enemies[rdm.randint(0, len(self.enemies) - 1)])
+		return enemy
+
 	def enemyBalancing(self, playerLevel, enemy):
 		print("\n")
 		key = list(enemy.keys())
 		key.remove("name")
-		print(key)
 		for i in range(playerLevel - 1):
 			random_attribute = rdm.choices(key)[0]
 			print(f"Enemy's {random_attribute} attribute got buffed by 20%")
@@ -147,6 +160,7 @@ class Game:
 
 	def level_up(self):
 		if (self.player["exp"] >= self.player["exp_container"]):
+			self.homeLimit = 0
 			print("You Level Up")
 			self.player["level"] += 1
 			self.player["exp"] = self.player["exp"] - self.player["exp_container"]
@@ -355,4 +369,4 @@ class Game:
 
 g = Game()
 g.Start()
-# g.shop()
+# g.enemySelection()
